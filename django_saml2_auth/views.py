@@ -167,9 +167,6 @@ def signin(request: HttpRequest):
     else:
         url_ok = is_safe_url(next_url)
 
-    if not url_ok:
-        return HttpResponseRedirect(get_reverse([denied, "denied", "django_saml2_auth:denied"]))
-
     request.session["login_next_url"] = next_url
 
     saml_client = get_saml_client(get_assertion_url(request), acs)
